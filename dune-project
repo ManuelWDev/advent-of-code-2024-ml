@@ -20,7 +20,7 @@
  (name tanenbaum)
  (synopsis "OCaml Advent of Code starter project")
  (depends
-  ocaml
+  (ocaml (= 4.14.2))
   reason
   dune
   (cmdliner(>= 1.2.0))
