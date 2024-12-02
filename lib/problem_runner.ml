@@ -25,6 +25,14 @@ module Run_mode = struct
     let () = output_string ch contents in
     close_out ch
 
+  let remove_last_line s = s
+  |> String.split_on_char '\n'
+  |> List.rev
+  |> function
+    | [] -> ""
+    | _ :: rest -> String.concat "\n" (List.rev rest)
+    
+
   let get_puzzle_input (year : int) (day : int)
       (credentials : Credentials.t option) : (string, string) result =
     (* Create cache directory structure *)
@@ -63,7 +71,8 @@ module Run_mode = struct
           in
           let headers = Credentials.to_headers credentials in
           let* response = Piaf.Client.Oneshot.get ~headers uri in
-          let* body = Piaf.Body.to_string response.body in
+          let* string_body = Piaf.Body.to_string response.body in
+          let body = remove_last_line string_body in
           write_file filename body;
           Lwt_result.return body
 
