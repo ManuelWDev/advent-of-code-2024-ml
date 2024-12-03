@@ -23,6 +23,7 @@
   (ocaml (= 4.14.2))
   reason
   dune
+  re
   (cmdliner(>= 1.2.0))
   (piaf (>= 0.1.0))
   (fmt (>= 0.9.0)))
