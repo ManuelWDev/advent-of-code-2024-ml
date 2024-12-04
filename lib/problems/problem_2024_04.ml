@@ -19,7 +19,7 @@ let sliding_window_checker check_pattern arrays =
   done;
   !count
 
-let check_arrays_list = [
+let part2_pattern = [
   [|
     [|Some 'M'; None; Some 'M'|];
     [|None; Some 'A'; None|];
@@ -42,7 +42,7 @@ let check_arrays_list = [
   |];
 ]
 
-let check_arrays_list1 = [
+let part1_pattern = [
   [|
     [|Some 'X'; Some 'M'; Some 'A'; Some 'S'|];
   |];
@@ -99,10 +99,10 @@ let solve pattern input =
 
 module Part_1 = struct
   let run (input : string) : (string, string) result = 
-    Ok (solve check_arrays_list1 input)
+    Ok (solve part1_pattern input)
 end
 
 module Part_2 = struct
   let run (input : string) : (string, string) result = 
-    Ok (solve check_arrays_list input)
+    Ok (solve part2_pattern input)
 end
