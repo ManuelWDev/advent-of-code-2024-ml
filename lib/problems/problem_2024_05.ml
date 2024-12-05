@@ -22,9 +22,8 @@ let parse_rules rule_lines =
 let parse_pages pages_lines = 
   pages_lines
   |> String.split_on_char '\n'
-  |> List.map (fun line -> 
-    line |>
-    String.split_on_char ','
+  |> List.map (fun line -> line 
+    |> String.split_on_char ','
     |> List.map int_of_string
   )
 
@@ -49,11 +48,11 @@ let solve filter calculate_line input =
   |> List.fold_left (+) 0
   |> string_of_int
 
-let middle_number numbers = List.nth numbers (List.length numbers / 2)
+let middle_element l = List.nth l (List.length l / 2)
 
 module Part_1 = struct
   let run (input : string) : (string, string) result = 
-    Ok (solve (is_ordered_correctly) (fun _ numbers -> middle_number numbers) input)
+    Ok (solve (is_ordered_correctly) (fun _ numbers -> middle_element numbers) input)
 end
 
 module Part_2 = struct
@@ -62,6 +61,6 @@ module Part_2 = struct
         (fun rules numbers -> not (is_ordered_correctly rules numbers))
         (fun rules numbers -> 
           let sorted = List.sort (compare_with_rules rules) numbers in
-          middle_number sorted
+          middle_element sorted
         ) input)
 end
