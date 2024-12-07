@@ -87,10 +87,10 @@ let part_1 input =
   |> PosSet.cardinal
   |> string_of_int
 
-  let part_2 input =
-    let (map, position) = parse input in
-    count_loop_positions map {position; direction=Up}
-    |> string_of_int
+let part_2 input =
+  let (map, position) = parse input in
+  count_loop_positions map {position; direction=Up}
+  |> string_of_int
 
 module Part_1 = struct
   let run (input : string) : (string, string) result = 
