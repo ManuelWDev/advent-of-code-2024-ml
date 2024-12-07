@@ -11,8 +11,8 @@ let solve operators input = input
   |> List.map (fun line -> 
       let parts = Str.split (Str.regexp ": ") line in
       let result = int_of_string (List.nth parts 0) in
-      let numbers = (List.nth parts 1 |> String.split_on_char ' ' |> List.map int_of_string) in
-      if (check_possible operators result numbers) then result else 0
+      let numbers = List.nth parts 1 |> String.split_on_char ' ' |> List.map int_of_string in
+      if check_possible operators result numbers then result else 0
     )
   |> List.fold_left (+) 0
   |> string_of_int
